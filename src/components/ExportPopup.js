@@ -41,7 +41,6 @@ export default function ExportPopup(props) {
     contextValues.edits[page + offset] && exportCanvas.loadFromJSON(contextValues.edits[page + offset], exportCanvas.renderAll.bind(exportCanvas));
   }
 
-  // fabric js
   const initCanvas = () => (
     new fabric.StaticCanvas('canvas-export', {
       isDrawingMode: false,
@@ -50,8 +49,6 @@ export default function ExportPopup(props) {
       backgroundColor: 'rgba(0,0,0,0)'
     })
   )
-
-  // fabric js
 
   React.useEffect(() => {
     pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;

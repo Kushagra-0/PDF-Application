@@ -12,12 +12,6 @@ export const useButtons = () => {
     return React.useContext(funButtons)
 }
 
-const roboto = Roboto({
-    weight: ['400', '700'],
-    style: ['normal', 'italic'],
-    subsets: ['latin'],
-})
-
 export const CanvasProvider = ({ children }) => {
     const [numPages, setNumPages] = React.useState(null);
     const [currPage, setCurrPage] = React.useState(1);
@@ -31,9 +25,8 @@ export const CanvasProvider = ({ children }) => {
 
     const exportPage = useRef(null);
     const [exportPages, setExportPages] = React.useState([]);
-    // canvas edits
     const [edits, setEdits] = React.useState({});
-    // uploaded image
+
 
     React.useEffect(() => {
         if (document.getElementById("canvasWrapper"))
@@ -87,21 +80,6 @@ export const CanvasProvider = ({ children }) => {
             });
     }
 
-    const addImage = (e, canvi) => {
-        var file = e.target.files[0];
-        var reader = new FileReader();
-        reader.onload = function (f) {
-            var data = f.target.result;
-            fabric.Image.fromURL(data, function (img) {
-                img.scaleToWidth(300);
-                canvi.add(img).renderAll();
-                var dataURL = canvi.toDataURL({ format: 'png', quality: 0.8 });
-            });
-        }
-        reader.readAsDataURL(file);
-        canvi.isDrawingMode = false
-    }
-
     const addNote = (canvi) => {
         fabric.Image.fromURL(`./note/note${(Math.floor(Math.random() * 10) % 4) + 1}.png`, function (img) {
             img.scaleToWidth(100);
@@ -118,72 +96,38 @@ export const CanvasProvider = ({ children }) => {
         }
     }
 
-    // add a rectangle
-    const addRect = canvi => {
-        const rect = new fabric.Rect({
-            height: 180,
-            width: 200,
-            fill: color,
-            stroke: borderColor,
-            strokeWidth: strokeWidth,
-            cornerStyle: 'circle',
-            editable: true
-        });
-        canvi.add(rect);
-        canvi.renderAll();
-        canvi.isDrawingMode = false
-    }
-
-    const addCircle = canvi => {
-        const rect = new fabric.Circle({
-            radius: 100,
-            fill: color,
-            cornerStyle: 'circle',
-            editable: true,
-            stroke: borderColor,
-            strokeWidth: 2,
-        });
-        canvi.add(rect);
-        canvi.renderAll();
-        canvi.isDrawingMode = false
-    }
-
-    // add highlight
     const addHighlight = canvi => {
         const centerX = canvi.width / 2;
         const centerY = canvi.height / 2;
     
-        // Create the rectangle
         const rect = new fabric.Rect({
-            height: 30, // Adjust height as needed
-            width: 200, // Adjust width as needed
-            fill:'#f4f4f4', // semi-transparent fill
-            left: centerX - 100, // Positioning the rectangle at the center
-            top: centerY - 25, // Positioning the rectangle at the center
+            height: 30,
+            width: 200, 
+            fill:'#f4f4f4',
+            left: centerX - 100,
+            top: centerY - 25, 
             cornerStyle: 'circle',
             editable: true,
             shadow: {
-                color: '#f4f4f4',// semi-transparent shadow color
-                blur: 55,            // Adjust the blur level for a blur effect
+                color: '#f4f4f4',
+                blur: 55,          
                 offsetX: 0,
                 offsetY: 0
             }
         });
      
     
-        // Add rectangle to canvas
+        
         canvi.add(rect);
         canvi.renderAll();
         canvi.isDrawingMode = false;
     }
     
 
-    // add text
     const addText = canvi => {
         const text = new fabric.Textbox("Type Here ...", {
             editable: true,
         });
-        // text.set({ fill: color })
         text.set({ fill: color, fontFamily: roboto.style.fontFamily })
         canvi.add(text);
         canvi.renderAll();
@@ -197,14 +141,13 @@ export const CanvasProvider = ({ children }) => {
         brush.strokeWidth = strokeWidth;
     }
 
-    // add functions here
     const exportPdf = () => {
         setExportPages((prev) => ([...prev, exportPage.current]));
         console.log(exportPages)
     }
 
     return (
-        <funButtons.Provider value={{ canvas, setCanvas, addRect, addCircle, addText, addImage, numPages, setNumPages, currPage, setCurrPage, selectedFile, setFile, addHighlight, toggleDraw, color, setColor, edits, setEdits, addNote, deleteBtn, exportPage, exportPdf, downloadPage, isExporting, borderColor, setBorderColor, strokeWidth, setStrokeWidth, hideCanvas, setHiddenCanvas }}>
+        <funButtons.Provider value={{ canvas, setCanvas, addText, numPages, setNumPages, currPage, setCurrPage, selectedFile, setFile, addHighlight, toggleDraw, color, setColor, edits, setEdits, addNote, deleteBtn, exportPage, exportPdf, downloadPage, isExporting, borderColor, setBorderColor, strokeWidth, setStrokeWidth, hideCanvas, setHiddenCanvas }}>
             {children}
         </funButtons.Provider>
     )
