@@ -4,7 +4,6 @@ import React, { useRef } from 'react'
 import { fabric } from 'fabric'
 import jsPDF from 'jspdf'
 import html2canvas from 'html2canvas'
-import { Roboto } from '@next/font/google'
 
 const funButtons = React.createContext()
 

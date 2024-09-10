@@ -1,17 +1,17 @@
 "use client"
 
 import { Fragment } from 'react'
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
-import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
-import 'react-pdf/dist/esm/Page/TextLayer.css';
 import { fabric } from 'fabric';
 import { Dialog, Transition } from '@headlessui/react'
 import { useButtons } from '../context/CanvasContext';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
-import { Backdrop, CircularProgress } from '@mui/material';
+import { Backdrop } from '@mui/material';
 import Loader from './Loader';
+import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
+import 'react-pdf/dist/esm/Page/TextLayer.css';
 
 export default function ExportPopup(props) {
 

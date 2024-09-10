@@ -2,16 +2,16 @@
 
 import React, { useState } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
-import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
-import 'react-pdf/dist/esm/Page/TextLayer.css';
-import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
-import 'react-pdf/dist/esm/Page/TextLayer.css';
 import { useDropzone } from 'react-dropzone';
 import { fabric } from 'fabric';
 import { useButtons } from '../context/CanvasContext';
 import SideBar from './SideBar';
 import { MdClose } from 'react-icons/md';
 import Loader from './Loader';
+import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
+import 'react-pdf/dist/esm/Page/TextLayer.css';
+import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
+import 'react-pdf/dist/esm/Page/TextLayer.css';
 
 
 export default function FileUpload() {
@@ -95,7 +95,7 @@ export default function FileUpload() {
                 </div>
                 : 
                 <div className="w-full min-h-[100vh] mt-96 flex items-center justify-center" {...getRootProps()}>
-                    <div className="flex w-[40vw] h-[40vh] justify-center items-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
+                    <div className="flex w-[40vw] h-[40vh] justify-center items-center rounded-md border-2 border-gray-300 px-6 pt-5 pb-6">
                         <div className="space-y-1 text-center">
                             
                             <div className={`flex text-md ${contextValues.theme ? "text-gray-400" : "text-gray-600"}`} >
